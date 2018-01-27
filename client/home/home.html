@@ -1,0 +1,54 @@
+<template name='home'>
+	<div class='header' style='background-color:#91a6bf;'>
+		<div class='titleContainer' style='text-align:center;font-size:24px;padding-top:14px;'>
+			<div>Giphy App</div>
+		</div>
+
+		<div class='searchContainer' style='text-align:center;padding:15px;'>
+			{{> search}}
+		</div>
+	</div>
+	{{#if loading}}
+		<div class="ui active loader"></div>
+	{{else}}
+		{{#if searchResults}}
+			<div class='resultsContainer' style='text-align:center;'>
+				{{#if $eq searchResults 'empty'}}
+					No Results
+				{{else}}
+					{{> gifWindow searchResults=searchResults}}
+				{{/if}}
+			</div>
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name='search'>
+	<div class='ui icon input' id='gifSearch' style='width:250px;'>
+		<input type="text" name='search' placeholder="Search...">
+		<i class='inverted circular search link icon'></i>
+	</div>
+</template>
+
+<template name='gifWindow'>
+	<div id='gifWindow' style='margin:0 auto;padding:10px 125px 0;overflow-y:scroll;height:{{dynamicHeight}}px;'>
+		{{#each searchResults}}
+			{{> gifCard}}
+		{{/each}}
+	</div>
+</template>
+
+<template name='gifCard'>
+	<div class='ui card move reveal' style='display:inline-block;margin:10px;'>
+		<div class='visible content'>
+			<div class='image'>
+				<img src='{{images.fixed_height.gif_url}}'>
+			</div>
+		</div>
+		<div class='hidden content'>
+			hellow
+		</div>
+		<!-- <div class='content'>
+		</div> -->
+	</div>
+</template>
