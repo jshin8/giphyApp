@@ -5,7 +5,9 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-runtime": "^6.26.0",
+    "core-js": "^2.5.3",
     "fibers": "^2.0.0",
     "giphy-js-sdk-core": "^1.0.3",
     "meteor-node-stubs": "^0.3.2"

@@ -1,0 +1,45 @@
+.header {
+	border-bottom:2px solid;
+}
+
+.header .titleContainer {
+	text-align:center;
+	font-size:24px;
+	padding-top:14px;
+}
+
+.header .searchContainer {
+	text-align:center;
+	padding:15px;
+}
+
+.resultsContainer {
+	text-align:center;
+}
+
+#appTitle:hover {
+	cursor: pointer;;
+}
+
+#gifSearch {
+	width: 250px;
+}
+
+#gifWindow {
+	margin:0 auto;
+	padding:10px 125px 0;
+	overflow-y:scroll;
+}
+
+.card {
+	display:inline-block !important;
+	margin:10px!important;
+}
+
+.card .circle.icon {
+	position:absolute;
+	top:5px;
+	right:0px;
+	font-size:18px;
+	color:white;
+}

@@ -3,13 +3,13 @@ client = GphApiClient("QJimIEq7Mj9w9h12upvx8cQQfocCZng5");
 
 Meteor.methods({
     getCall: function(type, search, offset) {
-    	var params = {};
+    	var params = {
+            offset: offset,
+            limit: 24
+        };
+
     	if (type === 'search') {
     		params.q = search;
-    		params.offset = offset;
-    	}
-    	else {
-    		params.offset = offset;
     	}
         try {
             var call = client[type]('gifs', params);

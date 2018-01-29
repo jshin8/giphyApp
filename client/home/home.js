@@ -5,6 +5,8 @@ Template.home.created = function () {
 	TemplateVar.set(template,'offset',false);
 	TemplateVar.set(template,'loading',false);
 	TemplateVar.set(template,'dynamicHeight',window.innerHeight - 100);
+	TemplateVar.set(template,'hover',false);
+	TemplateVar.set(template,'hoverData',false);
 	
 	var type = 'trending';
 	Meteor.call('getCall', type, function (error,result) {
@@ -17,14 +19,14 @@ Template.home.created = function () {
 				var data = result.data;
 				if (data.length) {
 					TemplateVar.setTo($('.searchContainer'), 'gifs', data);
-					TemplateVar.setTo($('.searchContainer'), 'offset',25);
+					TemplateVar.setTo($('.searchContainer'), 'offset',24);
 				}
 				else {
 					TemplateVar.setTo($('.searchContainer'), 'gifs', 'empty');
 				}
 			}
 		}
-	})
+	});
 };
 
 Template.home.rendered = function () {
@@ -46,6 +48,18 @@ Template.home.helpers({
 	loading: function () {
 		var loading = TemplateVar.get('loading');
 		return loading;
+	},
+	data: function () {
+		var data = TemplateVar.get('hoverData');
+		if (data) {
+			return data;
+		}
+	}
+});
+
+Template.home.events({
+	'click #appTitle': function (event,template) {
+		location.reload();
 	}
 });
 
@@ -67,7 +81,7 @@ Template.search.events({
 					var data = result.data;
 					if (data.length) {
 						TemplateVar.setTo($('.searchContainer'), 'gifs', data);
-						TemplateVar.setTo($('.searchContainer'), 'offset',25);
+						TemplateVar.setTo($('.searchContainer'), 'offset',24);
 					}
 					else {
 						TemplateVar.setTo($('.searchContainer'), 'gifs', 'empty');
@@ -87,9 +101,10 @@ Template.search.events({
 
 Template.gifWindow.rendered = function () {
 	$('#gifWindow').on('scroll', function () {
-		if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+		// console.log('left: ', $(this).scrollTop() + $(this).innerHeight());
+		// console.log('right: ', $(this)[0].scrollHeight);
+		if($(this).scrollTop() + $(this).innerHeight() + 0.5 >= $(this)[0].scrollHeight) {
 			var searchInput = TemplateVar.getFrom($('.searchContainer'), 'searchInput');
-			var offset = TemplateVar.getFrom($('.searchContainer'), 'offset');
 			var type;
 			if (searchInput) {
 				type = 'search';
@@ -97,7 +112,7 @@ Template.gifWindow.rendered = function () {
 			else {
 				type = 'trending';
 			}
-            getMoreGifs(type,searchInput,offset);
+            getMoreGifs(type,searchInput);
         }
 	});
 };
@@ -111,7 +126,36 @@ Template.gifWindow.helpers({
 	},
 });
 
-var getMoreGifs = function (type,searchInput,offset) {
+
+Template.gifCard.helpers({
+	hover: function () {
+		var hover = TemplateVar.getFrom($('.searchContainer'),'hover');
+		return hover;
+	}
+});
+
+Template.gifCard.events({
+	'mouseenter .card': function (event,template) {
+		TemplateVar.setTo($('.searchContainer'),'hoverData',false);
+		TemplateVar.setTo($('.searchContainer'),'hover',this.id);
+	},
+	'mouseleave .card': function (event,template) {
+		TemplateVar.setTo($('.searchContainer'),'hover',false);
+	},
+	'click .info': function (event,template) {
+		TemplateVar.setTo($('.searchContainer'),'hoverData',this);
+		$('.ui.modal').modal('show');
+		$(window).trigger('resize');
+	}
+});
+
+
+Template.gifModal.rendered = function () {
+	var template = this;
+};
+
+var getMoreGifs = _.throttle(function (type,searchInput) {
+	var offset = TemplateVar.getFrom($('.searchContainer'), 'offset');
 	Meteor.call('getCall', type, searchInput, offset, function (error,result) {
 		if (error) {
 			console.log('error with getCall more: ',error);
@@ -124,13 +168,13 @@ var getMoreGifs = function (type,searchInput,offset) {
 					var oldGifs = TemplateVar.getFrom($('.searchContainer'), 'gifs');
 					var newGifsArray = oldGifs.concat(data);
 					TemplateVar.setTo($('.searchContainer'), 'gifs', newGifsArray);
-					TemplateVar.setTo($('.searchContainer'), 'offset',offset +=25);
+					TemplateVar.setTo($('.searchContainer'), 'offset',offset += 24);
 				}
 				else {
 					$('#gifWindow').off('scroll');
-					$( "#gifWindow" ).append( "<div style='padding:20px;font-size:16px;'>End of Results</div>" );
+					$('#gifWindow').append( "<div style='padding:20px;font-size:16px;'>End of Results</div>" );
 				}
 			}
 		}
 	});
-};
+},3000,{'trailing':true});

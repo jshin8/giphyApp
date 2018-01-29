@@ -1,10 +1,10 @@
 <template name='home'>
-	<div class='header' style='background-color:#91a6bf;'>
-		<div class='titleContainer' style='text-align:center;font-size:24px;padding-top:14px;'>
-			<div>Giphy App</div>
+	<div class='header'>
+		<div class='titleContainer'>
+			<div id='appTitle'>Giphy App</div>
 		</div>
 
-		<div class='searchContainer' style='text-align:center;padding:15px;'>
+		<div class='searchContainer'>
 			{{> search}}
 		</div>
 	</div>
@@ -12,7 +12,7 @@
 		<div class="ui active loader"></div>
 	{{else}}
 		{{#if searchResults}}
-			<div class='resultsContainer' style='text-align:center;'>
+			<div class='resultsContainer'>
 				{{#if $eq searchResults 'empty'}}
 					No Results
 				{{else}}
@@ -21,17 +21,20 @@
 			</div>
 		{{/if}}
 	{{/if}}
+	{{#if data}}
+		{{> gifModal data=data}}
+	{{/if}}
 </template>
 
 <template name='search'>
-	<div class='ui icon input' id='gifSearch' style='width:250px;'>
+	<div class='ui icon input' id='gifSearch'>
 		<input type="text" name='search' placeholder="Search...">
 		<i class='inverted circular search link icon'></i>
 	</div>
 </template>
 
 <template name='gifWindow'>
-	<div id='gifWindow' style='margin:0 auto;padding:10px 125px 0;overflow-y:scroll;height:{{dynamicHeight}}px;'>
+	<div id='gifWindow' style='height:{{dynamicHeight}}px;'>
 		{{#each searchResults}}
 			{{> gifCard}}
 		{{/each}}
@@ -39,16 +42,37 @@
 </template>
 
 <template name='gifCard'>
-	<div class='ui card move reveal' style='display:inline-block;margin:10px;'>
-		<div class='visible content'>
+	<div class='ui card'>
+		<div class='image'>
+			<img src='{{images.fixed_height_small.gif_url}}'>
+			{{#if $eq hover this.id}}
+				<i class='info circle icon'></i>
+			{{/if}}
+		</div>
+	</div>
+	<!-- <div class='content'></div> -->
+</template>
+
+<template name='gifModal'>
+	<div class="ui modal">
+		<i class="close icon"></i>
+		<div class="header">
+			{{data.title}}
+		</div>
+		<div class="content">
 			<div class='image'>
-				<img src='{{images.fixed_height.gif_url}}'>
+				<img src='{{data.images.downsized.gif_url}}'>
 			</div>
 		</div>
-		<div class='hidden content'>
-			hellow
+		<div class="actions">
+			<div class="ui black deny button">
+			  Nope
+			</div>
+			<div class="ui positive right labeled icon button">
+			  Yep, that's me
+			  <i class="checkmark icon"></i>
+			</div>
 		</div>
-		<!-- <div class='content'>
-		</div> -->
 	</div>
 </template>
+
