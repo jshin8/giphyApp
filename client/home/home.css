@@ -43,3 +43,31 @@
 	font-size:18px;
 	color:white;
 }
+
+.modal .header {
+	font-size: 16px!important;
+}
+
+.modal .header .userName {
+	float:right;
+}
+
+.modal .detailTitle {
+	font-weight: 700;
+}
+
+.modal .content {
+	height:250px;
+	padding-left:65px!important;
+	padding-right:65px!important;
+	overflow-y:scroll;
+}
+
+.modal .content .image {
+	float:left;
+}
+
+.modal .content .details {
+	float:right;
+	line-height:30px;
+}

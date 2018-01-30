@@ -3,6 +3,7 @@ client = GphApiClient("QJimIEq7Mj9w9h12upvx8cQQfocCZng5");
 
 Meteor.methods({
     getCall: function(type, search, offset) {
+        console.log(type, search, offset)
     	var params = {
             offset: offset,
             limit: 24

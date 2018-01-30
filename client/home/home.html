@@ -21,8 +21,8 @@
 			</div>
 		{{/if}}
 	{{/if}}
-	{{#if data}}
-		{{> gifModal data=data}}
+	{{#if hoverData}}
+		{{> gifModal data=hoverData}}
 	{{/if}}
 </template>
 
@@ -55,22 +55,41 @@
 
 <template name='gifModal'>
 	<div class="ui modal">
-		<i class="close icon"></i>
 		<div class="header">
-			{{data.title}}
+			{{gifTitle}}
+			{{#with data.user}}
+				<div class='userName'>{{display_name}}</div>
+			{{/with}}
 		</div>
-		<div class="content">
+		<div class='content'>
 			<div class='image'>
-				<img src='{{data.images.downsized.gif_url}}'>
+				<img src='{{data.images.fixed_height.gif_url}}'>
+			</div>
+			<div class='details'>
+				<div class='uploaded'>
+					<span class='detailTitle'>Uploaded: </span>
+					{{uploaded}}
+				</div>
+				<div class='rating'>
+					<span class='detailTitle'>Rating: </span>
+					<span style='text-transform:uppercase;'>{{rating}}</span>
+				</div>
+				<div class='url'>
+					<span class='detailTitle'>Short URL: </span> 
+					<span id='shortUrl'>{{shortUrl}}</span>
+					<div class='tiny ui button' id='copyShort' style='font-size:9px;'>Copy</div>
+				</div>
+				{{#if source}}
+					<div class='url' style='max-width:300px;'>
+						<span class='detailTitle'>Source: </span> 
+						{{source}}
+					</div>
+				{{/if}}
 			</div>
 		</div>
 		<div class="actions">
 			<div class="ui black deny button">
-			  Nope
-			</div>
-			<div class="ui positive right labeled icon button">
-			  Yep, that's me
-			  <i class="checkmark icon"></i>
+			  Close
 			</div>
 		</div>
 	</div>

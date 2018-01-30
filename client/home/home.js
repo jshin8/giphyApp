@@ -49,10 +49,10 @@ Template.home.helpers({
 		var loading = TemplateVar.get('loading');
 		return loading;
 	},
-	data: function () {
-		var data = TemplateVar.get('hoverData');
-		if (data) {
-			return data;
+	hoverData: function () {
+		var hoverData = TemplateVar.get('hoverData');
+		if (hoverData) {
+			return hoverData;
 		}
 	}
 });
@@ -86,7 +86,7 @@ Template.search.events({
 					else {
 						TemplateVar.setTo($('.searchContainer'), 'gifs', 'empty');
 					}
-				} 
+				}
 			}
 		});
 	},
@@ -136,23 +136,66 @@ Template.gifCard.helpers({
 
 Template.gifCard.events({
 	'mouseenter .card': function (event,template) {
-		TemplateVar.setTo($('.searchContainer'),'hoverData',false);
+		TemplateVar.setTo($('.searchContainer'),'hoverData',this);
 		TemplateVar.setTo($('.searchContainer'),'hover',this.id);
 	},
 	'mouseleave .card': function (event,template) {
 		TemplateVar.setTo($('.searchContainer'),'hover',false);
 	},
 	'click .info': function (event,template) {
-		TemplateVar.setTo($('.searchContainer'),'hoverData',this);
+		// TemplateVar.setTo($('.searchContainer'),'hoverData',this);
 		$('.ui.modal').modal('show');
-		$(window).trigger('resize');
+		// $(window).trigger('resize');
 	}
 });
 
 
 Template.gifModal.rendered = function () {
-	var template = this;
+	$('#copyShort').on('click', function () {
+		window.getSelection().selectAllChildren( document.getElementById('shortUrl'));
+		document.execCommand('copy');
+	});
 };
+
+Template.gifModal.helpers({
+	gifTitle: function () {
+		var data = this.data;
+		var gifTitle;
+		if (data.title) {
+			gifTitle = data.title;
+		}
+		else {
+			gifTitle = 'GIF';
+		}
+		return gifTitle;
+	},
+	rating: function () {
+		var data = this.data;
+		var rating = data.rating;
+		return rating;
+	},
+	uploaded: function () {
+		var data = this.data;
+		var rawUploaded = data.import_datetime;
+		if (rawUploaded) {
+			var uploaded = moment(rawUploaded).format('L');
+			return uploaded;
+		}
+	},
+	shortUrl: function () {
+		var data = this.data;
+		var shortUrl = data.bitly_gif_url;
+		return shortUrl;
+	},
+	source: function () {
+		var data = this.data;
+		var source = data.source;
+		if (source) {
+			return source;
+		}
+	}
+});
+
 
 var getMoreGifs = _.throttle(function (type,searchInput) {
 	var offset = TemplateVar.getFrom($('.searchContainer'), 'offset');
