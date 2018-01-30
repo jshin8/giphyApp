@@ -71,3 +71,13 @@
 	float:right;
 	line-height:30px;
 }
+
+.modal .content a {
+    width: 215px!important;
+    display: inline-block;
+    overflow-x: hidden;
+    top: 5px;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

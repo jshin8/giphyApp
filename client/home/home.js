@@ -162,7 +162,13 @@ Template.gifModal.helpers({
 		var data = this.data;
 		var gifTitle;
 		if (data.title) {
-			gifTitle = data.title;
+			var nameInTitle = data.title.match(/(.*) by/);
+			if (nameInTitle) {
+				gifTitle = nameInTitle[1];
+			}
+			else {
+				gifTitle = data.title;
+			}
 		}
 		else {
 			gifTitle = 'GIF';
