@@ -29,3 +29,4 @@ semantic:ui-button
 semantic:ui-form
 raix:handlebar-helpers
 momentjs:moment
+session

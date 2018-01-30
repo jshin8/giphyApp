@@ -103,7 +103,7 @@ Template.gifWindow.rendered = function () {
 	$('#gifWindow').on('scroll', function () {
 		// console.log('left: ', $(this).scrollTop() + $(this).innerHeight());
 		// console.log('right: ', $(this)[0].scrollHeight);
-		if($(this).scrollTop() + $(this).innerHeight() + 0.5 >= $(this)[0].scrollHeight) {
+		if($(this).scrollTop() + $(this).innerHeight() + 500 >= $(this)[0].scrollHeight) {
 			var searchInput = TemplateVar.getFrom($('.searchContainer'), 'searchInput');
 			var type;
 			if (searchInput) {
@@ -226,4 +226,4 @@ var getMoreGifs = _.throttle(function (type,searchInput) {
 			}
 		}
 	});
-},3000,{'trailing':true});
+},3000,{'trailing':false});

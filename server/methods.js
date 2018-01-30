@@ -20,6 +20,4 @@ Meteor.methods({
             throw new Meteor.Error('error', 'dog');
         }
     }
-
-
 });
