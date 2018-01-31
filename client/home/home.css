@@ -31,10 +31,14 @@
 	overflow-y:scroll;
 }
 
+#gifWindow .loadMoreContainer {
+	padding: 20px;
+}
+
 .card {
 	display:inline-block !important;
 	margin:10px!important;
-	min-height: 100px!important;
+	min-height: 90px!important;
 }
 
 .card .circle.icon {
@@ -68,6 +72,10 @@
 	float:left;
 }
 
+.modal .content img {
+	max-width: 450px
+}
+
 .modal .content .details {
 	float:right;
 	line-height:30px;
@@ -77,8 +85,18 @@
     width: 215px!important;
     display: inline-block;
     overflow-x: hidden;
-    top: 5px;
+    top: 6px;
     position: relative;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+#copyShort {
+	font-size: 11px;
+	padding: 8px 6px;
+}
+
+.modal .copy {
+	position: relative;
+	left: 3px;
 }

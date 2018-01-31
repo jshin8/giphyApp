@@ -38,6 +38,11 @@
 		{{#each searchResults}}
 			{{> gifCard}}
 		{{/each}}
+		{{#if showLoadingButton}}
+			<div class='loadMoreContainer'>
+				<div class='ui button' id='loadMore'>Load More</div>
+			</div>
+		{{/if}}
 	</div>
 </template>
 
@@ -76,7 +81,9 @@
 				<div class='url'>
 					<span class='detailTitle'>Short URL: </span> 
 					<span id='shortUrl'>{{shortUrl}}</span>
-					<div class='tiny ui button' id='copyShort' style='font-size:9px;'>Copy</div>
+					<div class='tiny ui button' id='copyShort'>
+						<i class='copy icon'></i>
+					</div>
 				</div>
 				{{#if source}}
 					<div class='url' style='max-width:300px;line-height:20px;'>
