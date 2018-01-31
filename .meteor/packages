@@ -30,3 +30,4 @@ semantic:ui-form
 raix:handlebar-helpers
 momentjs:moment
 session
+aldeed:simple-schema

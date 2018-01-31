@@ -3,6 +3,7 @@ Template.home.created = function () {
 	TemplateVar.set(template,'gifs',false);
 	TemplateVar.set(template,'searchInput',false);
 	TemplateVar.set(template,'offset',false);
+	TemplateVar.set(template,'offsetTotal',false);
 	TemplateVar.set(template,'loading',false);
 	TemplateVar.set(template,'dynamicHeight',window.innerHeight - 100);
 	TemplateVar.set(template,'hover',false);
@@ -20,6 +21,7 @@ Template.home.created = function () {
 				if (data.length) {
 					TemplateVar.setTo($('.searchContainer'), 'gifs', data);
 					TemplateVar.setTo($('.searchContainer'), 'offset',24);
+					TemplateVar.setTo($('.searchContainer'), 'offsetTotal',24);
 				}
 				else {
 					TemplateVar.setTo($('.searchContainer'), 'gifs', 'empty');
@@ -27,6 +29,8 @@ Template.home.created = function () {
 			}
 		}
 	});
+
+	setSession(template);
 };
 
 Template.home.rendered = function () {
@@ -70,6 +74,7 @@ Template.search.events({
 		TemplateVar.setTo($('.searchContainer'), 'loading', true);
 		var search = $('#gifSearch input').val();
 		TemplateVar.setTo($('.searchContainer'),'searchInput',search);
+		var offsetTotal = TemplateVar.getFrom($('.searchContainer'),'offsetTotal');
 		Meteor.call('getCall', type, search, function (error,result) {
 			TemplateVar.setTo($('.searchContainer'),'loading',false);
 			if (error) {
@@ -82,6 +87,7 @@ Template.search.events({
 					if (data.length) {
 						TemplateVar.setTo($('.searchContainer'), 'gifs', data);
 						TemplateVar.setTo($('.searchContainer'), 'offset',24);
+						TemplateVar.setTo($('.searchContainer'), 'offsetTotal',offsetTotal += 24);
 					}
 					else {
 						TemplateVar.setTo($('.searchContainer'), 'gifs', 'empty');
@@ -143,9 +149,7 @@ Template.gifCard.events({
 		TemplateVar.setTo($('.searchContainer'),'hover',false);
 	},
 	'click .info': function (event,template) {
-		// TemplateVar.setTo($('.searchContainer'),'hoverData',this);
 		$('.ui.modal').modal('show');
-		// $(window).trigger('resize');
 	}
 });
 
@@ -205,6 +209,7 @@ Template.gifModal.helpers({
 
 var getMoreGifs = _.throttle(function (type,searchInput) {
 	var offset = TemplateVar.getFrom($('.searchContainer'), 'offset');
+	var offsetTotal = TemplateVar.getFrom($('.searchContainer'),'offsetTotal');
 	Meteor.call('getCall', type, searchInput, offset, function (error,result) {
 		if (error) {
 			console.log('error with getCall more: ',error);
@@ -218,6 +223,7 @@ var getMoreGifs = _.throttle(function (type,searchInput) {
 					var newGifsArray = oldGifs.concat(data);
 					TemplateVar.setTo($('.searchContainer'), 'gifs', newGifsArray);
 					TemplateVar.setTo($('.searchContainer'), 'offset',offset += 24);
+					TemplateVar.setTo($('.searchContainer'), 'offsetTotal',offsetTotal += 24);
 				}
 				else {
 					$('#gifWindow').off('scroll');
@@ -226,4 +232,11 @@ var getMoreGifs = _.throttle(function (type,searchInput) {
 			}
 		}
 	});
-},3000,{'trailing':false});
+},1000,{'trailing':false});
+
+
+var setSession = function (template) {
+	var sessionId = Math.round(Math.random() * 10000000);
+	TemplateVar.set(template,'sessionId',sessionId)
+	console.log('session is set: ',sessionId)
+};

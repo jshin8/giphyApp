@@ -1,0 +1,1 @@
+SessionFiles = new Mongo.Collection('SessionFiles');

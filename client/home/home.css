@@ -34,7 +34,7 @@
 .card {
 	display:inline-block !important;
 	margin:10px!important;
-	min-height: 150px!important;
+	min-height: 100px!important;
 }
 
 .card .circle.icon {

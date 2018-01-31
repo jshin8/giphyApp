@@ -44,13 +44,12 @@
 <template name='gifCard'>
 	<div class='ui card'>
 		<div class='image'>
-			<img src='{{images.fixed_height_small.gif_url}}'>
+			<img src='{{images.fixed_height_downsampled.gif_url}}'>
 			{{#if $eq hover this.id}}
 				<i class='info circle icon'></i>
 			{{/if}}
 		</div>
 	</div>
-	<!-- <div class='content'></div> -->
 </template>
 
 <template name='gifModal'>

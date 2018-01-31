@@ -19,5 +19,11 @@ Meteor.methods({
             console.log('error: ', error);
             throw new Meteor.Error('error', 'dog');
         }
+    },
+    logSessionFiles: function (sessionId,offset) {
+        var insert = SessionFiles.insert({
+            sessionId: sessionId,
+            offset:offset
+        });
     }
 });
