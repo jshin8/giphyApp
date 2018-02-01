@@ -8,6 +8,7 @@ Template.home.created = function () {
 	TemplateVar.set(template,'dynamicHeight',window.innerHeight - 100);
 	TemplateVar.set(template,'hover',false);
 	TemplateVar.set(template,'hoverData',false);
+	TemplateVar.set(template,'hoverDataIndex',false);
 	
 	var type = 'trending';
 	Meteor.call('getCall', type, function (error,result) {
@@ -165,6 +166,9 @@ Template.gifCard.events({
 	'mouseenter .card': function (event,template) {
 		TemplateVar.setTo($('.searchContainer'),'hoverData',this);
 		TemplateVar.setTo($('.searchContainer'),'hover',this.id);
+		var target = event.currentTarget;
+		var index = $('div.card').index(target);
+		TemplateVar.setTo($('.searchContainer'),'hoverDataIndex',index);
 	},
 	'mouseleave .card': function (event,template) {
 		TemplateVar.setTo($('.searchContainer'),'hover',false);
@@ -176,9 +180,30 @@ Template.gifCard.events({
 
 
 Template.gifModal.rendered = function () {
+	var template = this;
 	$('#copyShort').on('click', function () {
 		window.getSelection().selectAllChildren( document.getElementById('shortUrl'));
 		document.execCommand('copy');
+	});
+	$('#leftNav').on('click', function () {
+		var index = TemplateVar.getFrom($('.searchContainer'),'hoverDataIndex');
+		if (index) {
+			var newIndex = index - 1;
+			var gifs = TemplateVar.getFrom($('.searchContainer'),'gifs');
+			var newGif = gifs[newIndex];
+			TemplateVar.setTo($('.searchContainer'),'hoverData',newGif);
+			TemplateVar.setTo($('.searchContainer'),'hoverDataIndex',newIndex);
+		}
+	});
+	$('#rightNav').on('click', function () {
+		var index = TemplateVar.getFrom($('.searchContainer'),'hoverDataIndex');
+		var gifs = TemplateVar.getFrom($('.searchContainer'),'gifs');
+		if (index < gifs.length-1) {
+			var newIndex = index + 1;
+			var newGif = gifs[newIndex];
+			TemplateVar.setTo($('.searchContainer'),'hoverData',newGif);
+			TemplateVar.setTo($('.searchContainer'),'hoverDataIndex',newIndex);
+		}
 	});
 };
 
@@ -259,7 +284,7 @@ var getMoreGifs = _.throttle(function (type,searchInput) {
 			}
 		}
 	});
-},1000,{'trailing':false});
+},750,{'trailing':false});
 
 
 var setSession = function (template) {
