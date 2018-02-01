@@ -68,8 +68,8 @@
 
 .modal .content {
 	height:250px;
-	padding-left:65px!important;
-	padding-right:65px!important;
+	padding-left:45px!important;
+	padding-right:45px!important;
 	overflow-y:scroll;
 }
 
@@ -78,19 +78,21 @@
 }
 
 .modal .content img {
-	max-width: 450px
+	/*max-width: 450px*/
 }
 
 .modal .content .details {
 	float:right;
 	line-height:40px;
+	font-size: 12px;
+	/*max-width: 360px;*/
 }
 
 .modal .content a {
-    width: 215px!important;
+    width: 300px!important;
     display: inline-block;
     overflow-x: hidden;
-    top: 7px;
+    top: 8px;
     position: relative;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -108,7 +110,7 @@
 	margin:0!important;
 }
 
-#copyShort {
+#copyShort, #copyEmbed {
 	font-size: 11px;
 	padding: 8px 6px;
 }

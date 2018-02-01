@@ -182,7 +182,11 @@ Template.gifCard.events({
 Template.gifModal.rendered = function () {
 	var template = this;
 	$('#copyShort').on('click', function () {
-		window.getSelection().selectAllChildren( document.getElementById('shortUrl'));
+		window.getSelection().selectAllChildren(document.getElementById('shortUrl'));
+		document.execCommand('copy');
+	});
+	$('#copyEmbed').on('click', function () {
+		window.getSelection().selectAllChildren(document.getElementById('embedUrl'));
 		document.execCommand('copy');
 	});
 	$('#leftNav').on('click', function () {
@@ -242,6 +246,11 @@ Template.gifModal.helpers({
 		var data = this.data;
 		var shortUrl = data.bitly_gif_url;
 		return shortUrl;
+	},
+	embedUrl: function () {
+		var data = this.data;
+		var embedUrl = data.embed_url;
+		return embedUrl;
 	},
 	source: function () {
 		var data = this.data;
