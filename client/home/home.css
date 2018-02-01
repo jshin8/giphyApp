@@ -35,6 +35,11 @@
 	padding: 20px;
 }
 
+#endResults {
+	padding:20px;
+	font-size:16px;
+}
+
 .card {
 	display:inline-block !important;
 	margin:10px!important;
@@ -78,17 +83,29 @@
 
 .modal .content .details {
 	float:right;
-	line-height:30px;
+	line-height:40px;
 }
 
 .modal .content a {
     width: 215px!important;
     display: inline-block;
     overflow-x: hidden;
-    top: 6px;
+    top: 7px;
     position: relative;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.modal .actions {
+	padding: 1rem 1.5rem!important;
+}
+
+.modal .actions .arrowContainer {
+	float:left;
+}
+
+.modal .actions .arrowContainer .chevron {
+	margin:0!important;
 }
 
 #copyShort {

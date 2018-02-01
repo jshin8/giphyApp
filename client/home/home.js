@@ -109,8 +109,6 @@ Template.gifWindow.rendered = function () {
 	var sessionId = TemplateVar.getFrom($('.searchContainer'),'sessionId');
 	if (sessionId % 2 === 0) {
 		$('#gifWindow').on('scroll', function () {
-			// console.log('left: ', $(this).scrollTop() + $(this).innerHeight());
-			// console.log('right: ', $(this)[0].scrollHeight);
 			if($(this).scrollTop() + $(this).innerHeight() + 500 >= $(this)[0].scrollHeight) {
 				var searchInput = TemplateVar.getFrom($('.searchContainer'), 'searchInput');
 				var type;
@@ -123,9 +121,6 @@ Template.gifWindow.rendered = function () {
 	            getMoreGifs(type,searchInput);
 	        }
 		});
-	}
-	else {
-
 	}
 };
 
@@ -258,7 +253,8 @@ var getMoreGifs = _.throttle(function (type,searchInput) {
 				}
 				else {
 					$('#gifWindow').off('scroll');
-					$('#gifWindow').append( "<div style='padding:20px;font-size:16px;'>End of Results</div>" );
+					$('.loadMoreContainer').remove();
+					$('#gifWindow').append( "<div id='endResults'>End of Results</div>" );
 				}
 			}
 		}
