@@ -1,0 +1,10 @@
+<template name='gifCard'>
+	<div class='ui card'>
+		<div class='image'>
+			<img src='{{imgSrc}}'>
+			{{#if $eq hover this.id}}
+				<i class='info circle icon'></i>
+			{{/if}}
+		</div>
+	</div>
+</template>

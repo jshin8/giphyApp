@@ -1,0 +1,22 @@
+.header {
+	border-bottom:2px solid;
+}
+
+.header .titleContainer {
+	text-align:center;
+	font-size:24px;
+	padding-top:14px;
+}
+
+.header .searchContainer {
+	text-align:center;
+	padding:15px;
+}
+
+.resultsContainer {
+	text-align:center;
+}
+
+#appTitle:hover {
+	cursor: pointer;;
+}

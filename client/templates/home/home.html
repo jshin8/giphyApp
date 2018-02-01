@@ -1,0 +1,27 @@
+<template name='home'>
+	<div class='header'>
+		<div class='titleContainer'>
+			<div id='appTitle'>Giphy App</div>
+		</div>
+
+		<div class='searchContainer'>
+			{{> search}}
+		</div>
+	</div>
+	{{#if loading}}
+		<div class="ui active loader"></div>
+	{{else}}
+		{{#if searchResults}}
+			<div class='resultsContainer'>
+				{{#if $eq searchResults 'empty'}}
+					<div class='noResults'>No Results</div>
+				{{else}}
+					{{> gifWindow searchResults=searchResults}}
+				{{/if}}
+			</div>
+		{{/if}}
+	{{/if}}
+	{{#if hoverData}}
+		{{> gifModal data=hoverData}}
+	{{/if}}
+</template>

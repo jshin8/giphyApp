@@ -1,0 +1,14 @@
+#gifWindow {
+	margin:0 auto;
+	padding:10px 125px 0;
+	overflow-y:scroll;
+}
+
+#gifWindow .loadMoreContainer {
+	padding: 20px;
+}
+
+#endResults {
+	padding:20px;
+	font-size:16px;
+}
