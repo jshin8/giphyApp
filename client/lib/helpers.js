@@ -27,8 +27,11 @@ Helpers = {
 		});
 	},750,{'trailing':false}),
 	setSession: function (template) {
-		var sessionId = Math.round(Math.random() * 1000);
-		TemplateVar.set(template,'sessionId',sessionId)
-		console.log('session is set: ',sessionId)
+		var sessionObject = {};
+		sessionObject.scrollTest = Math.floor(Math.random() * 2);
+		sessionObject.otherTest = Math.floor(Math.random() * 2);
+
+		TemplateVar.set(template,'sessionObject',sessionObject)
+		console.log('session is set: ',sessionObject)
 	}
 };

@@ -1,6 +1,6 @@
 Template.gifWindow.rendered = function () {
-	var sessionId = TemplateVar.getFrom($('.searchContainer'),'sessionId');
-	if (sessionId % 2 === 0) {
+	var sessionObject = TemplateVar.getFrom($('.searchContainer'),'sessionObject');
+	if (sessionObject.scrollTest) {
 		$('#gifWindow').on('scroll', function () {
 			if($(this).scrollTop() + $(this).innerHeight() + 500 >= $(this)[0].scrollHeight) {
 				var searchInput = TemplateVar.getFrom($('.searchContainer'), 'searchInput');
@@ -25,8 +25,8 @@ Template.gifWindow.helpers({
 		}
 	},
 	showLoadingButton: function () {
-		var sessionId = TemplateVar.getFrom($('.searchContainer'),'sessionId');
-		if (sessionId % 2 !== 0) {
+		var sessionObject = TemplateVar.getFrom($('.searchContainer'),'sessionObject');
+		if (!sessionObject.scrollTest) {
 			return true;
 		}
 	}

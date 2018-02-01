@@ -1,7 +1,7 @@
 Meteor.startup(function () {
 	$(window).bind('beforeunload', function() {
-		var sessionId = TemplateVar.getFrom($('.searchContainer'),'sessionId');
+		var sessionObject = TemplateVar.getFrom($('.searchContainer'),'sessionObject');
 		var offsetTotal = TemplateVar.getFrom($('.searchContainer'),'offsetTotal');
-        Meteor.call('logSessionFiles', sessionId, offsetTotal);
+        Meteor.call('logSessionFiles', sessionObject, offsetTotal);
     });
 });

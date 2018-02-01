@@ -17,6 +17,10 @@
 	text-align:center;
 }
 
+.noResults {
+	padding-top: 75px;
+}
+
 #appTitle:hover {
 	cursor: pointer;;
 }

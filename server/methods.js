@@ -1,14 +1,13 @@
 GphApiClient = require('giphy-js-sdk-core');
-client = GphApiClient("QJimIEq7Mj9w9h12upvx8cQQfocCZng5");
+var giphyKey = Meteor.settings.giphyKey;
+client = GphApiClient(giphyKey);
 
 Meteor.methods({
     getCall: function(type, search, offset) {
-        console.log(type, search, offset)
     	var params = {
             offset: offset,
             limit: 24
         };
-
     	if (type === 'search') {
     		params.q = search;
     	}
@@ -17,13 +16,13 @@ Meteor.methods({
             return call;
         } catch (error) {
             console.log('error: ', error);
-            throw new Meteor.Error('error', 'dog');
+            throw new Meteor.Error('error with ', type);
         }
     },
-    logSessionFiles: function (sessionId,offset) {
+    logSessionFiles: function (sessionObject,offset) {
         var insert = SessionFiles.insert({
-            sessionId: sessionId,
-            offset:offset
+            sessionObject: sessionObject,
+            gifsLoaded:offset
         });
     }
 });
