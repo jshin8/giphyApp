@@ -28,6 +28,21 @@ Template.gifModal.rendered = function () {
 			TemplateVar.setTo($('.searchContainer'),'hoverDataIndex',newIndex);
 		}
 	});
+	$('.star').on('click', function () {
+		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');
+		var index = TemplateVar.getFrom($('.searchContainer'),'hoverDataIndex');
+		var favoriteArray = TemplateVar.getFrom($('.searchContainer'),'favoriteArray');
+		var favorited = favoriteArray.indexOf(index);
+		if (favorited > -1) {
+			favoriteArray.splice(favorited,1);
+			TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount-1);
+		}
+		else {
+			favoriteArray.push(index);
+			TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount+1);
+		}
+		TemplateVar.setTo($('.searchContainer'),'favoriteArray',favoriteArray);
+	});
 };
 
 Template.gifModal.helpers({
@@ -81,6 +96,20 @@ Template.gifModal.helpers({
 			else {
 				return 'http://' + source;
 			}
+		}
+	},
+	showHeartButton: function () {
+		var sessionObject = TemplateVar.getFrom($('.searchContainer'),'sessionObject');
+		if (!sessionObject.favoriteTest) {
+			return true;
+		}
+	},
+	starClass: function () {
+		var index = TemplateVar.getFrom($('.searchContainer'),'hoverDataIndex');
+		var favoriteArray = TemplateVar.getFrom($('.searchContainer'),'favoriteArray');
+		var favorited = favoriteArray.indexOf(index);
+		if (favorited === -1) {
+			return 'empty';
 		}
 	}
 });

@@ -62,3 +62,18 @@
 	position: relative;
 	left: 3px;
 }
+
+.modal .starContainer {
+	display: inline;
+	font-size: 18px;
+	float: right;
+}
+
+.modal .starContainer .star:hover,
+.modal .starContainer .star:not(.empty) {
+	color:#c7c730;
+}
+
+.modal .starContainer .icon:hover {
+	cursor: pointer;
+}

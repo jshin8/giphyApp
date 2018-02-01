@@ -22,7 +22,7 @@ Template.gifCard.helpers({
 			heartToggle = 'inline-block';
 		}
 		else {
-			heartToggle = 'none;'
+			heartToggle = 'none;';
 		}
 		return heartToggle;
 	}
@@ -48,7 +48,7 @@ Template.gifCard.events({
 		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');
 		TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount+1);
 	},
-	'click .heart:not(.empty)': function (event,template) {
+	'click .star:not(.empty)': function (event,template) {
 		var currentTarget = event.currentTarget;
 		$(currentTarget).addClass('empty');
 		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');

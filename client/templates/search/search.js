@@ -5,6 +5,7 @@ Template.search.events({
 			var type = 'search';
 			TemplateVar.setTo($('.searchContainer'), 'loading', true);
 			TemplateVar.setTo($('.searchContainer'),'searchInput',search);
+			TemplateVar.setTo($('.searchContainer'),'favoriteArray',[]);
 			var offsetTotal = TemplateVar.getFrom($('.searchContainer'),'offsetTotal');
 			Meteor.call('getCall', type, search, function (error,result) {
 				TemplateVar.setTo($('.searchContainer'),'loading',false);

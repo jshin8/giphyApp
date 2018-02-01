@@ -12,10 +12,18 @@
 	color:white;
 }
 
-.card .heart.icon {
+.card .star.icon {
 	position:absolute;
 	top:5px;
 	left:2px;
 	font-size:17px;
 	color:white;
+}
+
+.card .star:hover {
+	color:yellow;
+}
+
+.card .icon:hover {
+	cursor: pointer;
 }

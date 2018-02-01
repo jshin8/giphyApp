@@ -10,6 +10,7 @@ Template.home.created = function () {
 	TemplateVar.set(template,'hoverData',false);
 	TemplateVar.set(template,'hoverDataIndex',false);
 	TemplateVar.set(template,'favoriteCount',0);
+	TemplateVar.set(template,'favoriteArray',[]);
 	
 	var type = 'trending';
 	Meteor.call('getCall', type, function (error,result) {
