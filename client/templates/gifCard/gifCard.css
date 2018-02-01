@@ -11,3 +11,11 @@
 	font-size:18px;
 	color:white;
 }
+
+.card .heart.icon {
+	position:absolute;
+	top:5px;
+	left:2px;
+	font-size:17px;
+	color:white;
+}

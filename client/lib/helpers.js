@@ -29,7 +29,7 @@ Helpers = {
 	setSession: function (template) {
 		var sessionObject = {};
 		sessionObject.scrollTest = Math.floor(Math.random() * 2);
-		sessionObject.otherTest = Math.floor(Math.random() * 2);
+		sessionObject.favoriteTest = Math.floor(Math.random() * 2);
 
 		TemplateVar.set(template,'sessionObject',sessionObject)
 		console.log('session is set: ',sessionObject)

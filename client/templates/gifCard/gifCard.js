@@ -7,6 +7,24 @@ Template.gifCard.helpers({
 	hover: function () {
 		var hover = TemplateVar.getFrom($('.searchContainer'),'hover');
 		return hover;
+	},
+	showHeartButton: function () {
+		var sessionObject = TemplateVar.getFrom($('.searchContainer'),'sessionObject');
+		if (sessionObject.favoriteTest) {
+			return true;
+		}
+	},
+	heartToggle: function () {
+		var hover = TemplateVar.getFrom($('.searchContainer'),'hover');
+		var id = this.id;
+		var heartToggle;
+		if (id === hover) {
+			heartToggle = 'inline-block';
+		}
+		else {
+			heartToggle = 'none;'
+		}
+		return heartToggle;
 	}
 });
 
@@ -23,5 +41,18 @@ Template.gifCard.events({
 	},
 	'click .info': function (event,template) {
 		$('.ui.modal').modal('show');
+	},
+	'click .empty': function (event,template) {
+		console.log('???: ',event)
+		// var currentTarget = event.currentTarget;
+		// $(currentTarget).removeClass('empty');
+		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');
+		TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount+1);
+	},
+	'click .heart:not(.empty)': function (event,template) {
+		var currentTarget = event.currentTarget;
+		$(currentTarget).addClass('empty');
+		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');
+		TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount-1);
 	}
 });

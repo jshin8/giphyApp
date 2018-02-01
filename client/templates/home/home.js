@@ -5,10 +5,11 @@ Template.home.created = function () {
 	TemplateVar.set(template,'offset',false);
 	TemplateVar.set(template,'offsetTotal',false);
 	TemplateVar.set(template,'loading',false);
-	TemplateVar.set(template,'dynamicHeight',window.innerHeight - 100);
+	TemplateVar.set(template,'dynamicHeight',window.innerHeight - 102);
 	TemplateVar.set(template,'hover',false);
 	TemplateVar.set(template,'hoverData',false);
 	TemplateVar.set(template,'hoverDataIndex',false);
+	TemplateVar.set(template,'favoriteCount',0);
 	
 	var type = 'trending';
 	Meteor.call('getCall', type, function (error,result) {
@@ -38,7 +39,7 @@ Template.home.rendered = function () {
 	var template = this;
 	$(window).resize(function () {
 		var height = window.innerHeight;
-		var dynamicHeight = height - 100;
+		var dynamicHeight = height - 102;
 		TemplateVar.set(template,'dynamicHeight',dynamicHeight);
 	});
 };
