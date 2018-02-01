@@ -31,7 +31,7 @@ Template.search.events({
 	'keypress input': function (event,template) {
         var button = event.keyCode;
         if (button === 13) {
-			$('i').click();
+			$('i.search').click();
         }
 	}
 });

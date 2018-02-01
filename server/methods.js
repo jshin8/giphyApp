@@ -19,10 +19,11 @@ Meteor.methods({
             throw new Meteor.Error('error with ', type);
         }
     },
-    logSessionFiles: function (sessionObject,offset) {
+    logSessionFiles: function (sessionObject,offset,favoriteCount) {
         var insert = SessionFiles.insert({
             sessionObject: sessionObject,
-            gifsLoaded:offset
+            gifsLoaded:offset,
+            favoriteCount:favoriteCount
         });
     }
 });

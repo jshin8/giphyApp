@@ -43,9 +43,8 @@ Template.gifCard.events({
 		$('.ui.modal').modal('show');
 	},
 	'click .empty': function (event,template) {
-		console.log('???: ',event)
-		// var currentTarget = event.currentTarget;
-		// $(currentTarget).removeClass('empty');
+		var currentTarget = event.currentTarget;
+		$(currentTarget).removeClass('empty');
 		var favoriteCount = TemplateVar.getFrom($('.searchContainer'),'favoriteCount');
 		TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount+1);
 	},
