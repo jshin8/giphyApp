@@ -17,6 +17,14 @@ Steps to run:
 ###### `cd giphyApp`
 
 
-#### 4. Start app
+### 4. Install NPM
+
+###### `meteor npm install`
+
+
+#### 5. Start app
 
 ###### `meteor --settings settings.json`
+
+
+### App should be running at: http://localhost:3000/
