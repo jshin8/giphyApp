@@ -4,13 +4,13 @@ client = GphApiClient(giphyKey);
 
 Meteor.methods({
     getCall: function(type, search, offset) {
-    	var params = {
+        var params = {
             offset: offset,
             limit: 24
         };
-    	if (type === 'search') {
-    		params.q = search;
-    	}
+        if (type === 'search') {
+            params.q = search;
+        }
         try {
             var call = client[type]('gifs', params);
             return call;

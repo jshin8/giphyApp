@@ -11,8 +11,8 @@ Template.gifWindow.rendered = function () {
 				else {
 					type = 'trending';
 				}
-	            Helpers.getMoreGifs(type,searchInput);
-	        }
+				Helpers.getMoreGifs(type,searchInput);
+			}
 		});
 	}
 };

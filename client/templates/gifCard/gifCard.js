@@ -41,6 +41,12 @@ Template.gifCard.events({
 	},
 	'click .info': function (event,template) {
 		$('.ui.modal').modal('show');
+		$('#copyEmbed').popup({
+			on:'click'
+		});
+		$('#copyShort').popup({
+			on:'click'
+		});
 	},
 	'click .empty': function (event,template) {
 		var currentTarget = event.currentTarget;
