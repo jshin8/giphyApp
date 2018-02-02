@@ -24,26 +24,28 @@
 					<span class='detailTitle'>Rating: </span>
 					<span style='text-transform:uppercase;'>{{rating}}</span>
 				</div>
-				<div class='url'>
-					<span class='detailTitle'>Embed URL: </span> 
-					<span id='embedUrl'>{{embedUrl}}</span>
-					<div class='tiny ui button' id='copyEmbed' data-content='Copied!'>
-						<i class='copy icon'></i>
-					</div>
-				</div>
-				<div class='url'>
-					<span class='detailTitle'>Giphy URL: </span> 
-					<span id='shortUrl'>{{shortUrl}}</span>
-					<div class='tiny ui button' id='copyShort' data-content='Copied!'>
-						<i class='copy icon'></i>
-					</div>
-				</div>
-				{{#if source}}
-					<div class='url' style='max-width:400px;white-space:nowrap;overflow-x:hidden;text-overflow:ellipsis;'>
-						<span class='detailTitle'>Source: </span> 
-						<span id='source'>{{source}}</span>
+				{{#if embedUrl}}
+					<div class='url'>
+						<span class='detailTitle'>Embed URL: </span> 
+						<span id='embedUrl'>{{embedUrl}}</span>
+						<div class='tiny ui button' id='copyEmbed' data-content='Copied!'>
+							<i class='copy icon'></i>
+						</div>
 					</div>
 				{{/if}}
+				{{#if shortUrl}}
+					<div class='url'>
+						<span class='detailTitle'>Giphy URL: </span> 
+						<span id='shortUrl'>{{shortUrl}}</span>
+						<div class='tiny ui button' id='copyShort' data-content='Copied!'>
+							<i class='copy icon'></i>
+						</div>
+					</div>
+				{{/if}}
+				<div class='url' style='max-width:400px;white-space:nowrap;overflow-x:hidden;text-overflow:ellipsis;display:{{sourceDisplay}};'>
+					<span class='detailTitle'>Source: </span> 
+					<span id='source'>{{source}}</span>
+				</div>
 			</div>
 		</div>
 		<div class="actions">

@@ -71,31 +71,32 @@ Template.gifModal.helpers({
 		return gifTitle;
 	},
 	rating: function () {
-		var data = this.data;
-		var rating = data.rating;
+		var rating = this.data.rating;
 		return rating;
 	},
 	uploaded: function () {
-		var data = this.data;
-		var rawUploaded = data.import_datetime;
+		var rawUploaded = this.data.import_datetime;
 		if (rawUploaded) {
 			var uploaded = moment(rawUploaded).format('L');
 			return uploaded;
 		}
 	},
 	shortUrl: function () {
-		var data = this.data;
-		var shortUrl = data.bitly_gif_url;
+		var shortUrl = this.data.bitly_gif_url;
 		return shortUrl;
 	},
 	embedUrl: function () {
-		var data = this.data;
-		var embedUrl = data.embed_url;
+		var embedUrl = this.data.embed_url;
 		return embedUrl;
 	},
+	sourceDisplay: function () {
+		var source = this.data.source;
+		if (!source) {
+			return 'none';
+		}
+	},
 	source: function () {
-		var data = this.data;
-		var source = data.source;
+		var source = this.data.source;
 		if (source) {
 			if (source.match(/http:/) || source.match(/https:/)) {
 				return source;
