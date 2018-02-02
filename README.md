@@ -17,7 +17,7 @@ Steps to run:
 ###### `cd giphyApp`
 
 
-### 4. Install NPM
+#### 4. Install npm
 
 ###### `meteor npm install`
 
