@@ -33,8 +33,8 @@
 
 
 #### There are two active A/B tests:
-	1. Gif Loading - infinite scroll vs. button press
-	2. Gif Interaction Button Location - overlaid on gif vs. within modal
+- Gif Loading - infinite scroll vs. button press
+- Gif Interaction Button Location - overlaid on gif vs. within modal
 
 #### Gifs rendered and favorited are counted during each user session. A user session begins/ends on each load/reload/unload of the app.
 
