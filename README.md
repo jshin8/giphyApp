@@ -5,27 +5,27 @@
 
 #### 1. Install Meteor
 
-	`curl https://install.meteor.com | sh`
+	curl https://install.meteor.com | sh
 
 
 #### 2. Clone the repo 
 
-	`git clone https://github.com/jshin8/giphyApp.git`
+	git clone https://github.com/jshin8/giphyApp.git
 
 
 #### 3. Go to root
 
-	`cd giphyApp`
+	cd giphyApp
 
 
 #### 4. Install npm
 
-	`meteor npm install`
+	meteor npm install
 
 
 #### 5. Start app
 
-	`meteor --settings settings.json`
+	meteor --settings settings.json
 
 
 #### 6. App should be running at: http://localhost:3000/
@@ -40,7 +40,7 @@
 
 #### Test stats can be retrieved from the client (JS Console) or server (meteor shell) using the command:
 
-	`SessionFiles.find().fetch()`
+	SessionFiles.find().fetch()
 
 #### scrollTest:
 	0 = button press
