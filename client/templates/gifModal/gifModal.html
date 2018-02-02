@@ -39,10 +39,9 @@
 					</div>
 				</div>
 				{{#if source}}
-					<div class='url' style='max-width:370px;line-height:22px;'>
-						<div class='detailTitle' style='display: inline-block;'>Source: 
-							<a href='{{source}}' target='_blank'>{{source}}</a>
-						</div> 
+					<div class='url' style='max-width:400px;white-space:nowrap;overflow-x:hidden;text-overflow:ellipsis;'>
+						<span class='detailTitle'>Source: </span> 
+						<span id='source'>{{source}}</span>
 					</div>
 				{{/if}}
 			</div>

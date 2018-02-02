@@ -1,5 +1,4 @@
 Template.gifModal.rendered = function () {
-	var template = this;
 	$('#copyShort').on('click', function () {
 		window.getSelection().selectAllChildren(document.getElementById('shortUrl'));
 		document.execCommand('copy');
@@ -42,6 +41,14 @@ Template.gifModal.rendered = function () {
 			TemplateVar.setTo($('.searchContainer'),'favoriteCount',favoriteCount+1);
 		}
 		TemplateVar.setTo($('.searchContainer'),'favoriteArray',favoriteArray);
+	});
+	$('#source').on('click', function () {
+		var hoverData = TemplateVar.getFrom($('.searchContainer'),'hoverData');
+		var source = hoverData.source;
+		if (!source.match(/http:/) || !source.match(/https:/)) {
+			source = 'http://' + source;
+		}
+		window.open(source,'_blank');
 	});
 };
 
